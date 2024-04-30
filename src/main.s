@@ -1,7 +1,7 @@
-
-
-.global _start
-.extern syscall_exit
-_start:
-	xor %rdi, %rdi
-	call syscall_exit
+/*
+	main -> this is where the real execuation of the program begins
+*/
+.global main
+main:
+	xor %rax, %rax
+	ret
