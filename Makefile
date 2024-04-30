@@ -24,7 +24,7 @@ $(OUT)/%.o: $(SRC)/%.s
 	$(AS) $(ASFLAGS) $^ -o $@
 
 install:
-	sudo install -m 755 $(TARGET) /usr/bin/
+	sudo install -s -m 755 $(TARGET) /usr/bin/
 
 clean:
 	rm -rf $(TARGET) $(OUT)/*.o
