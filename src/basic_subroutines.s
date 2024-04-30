@@ -4,7 +4,7 @@
 	%rsp		-> argument counter
 	%rsp+8		-> argument pointers
 	%rsp+argc*8+8+8	-> environment pointers
-	then the transfer is given to main subroutine
+	this subroutine parse this data then gives control to main subroutine
 */
 .global _start
 _start:
