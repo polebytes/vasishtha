@@ -5,7 +5,7 @@ LD=ld
 ASFLAGS=-g
 SRC=src
 OUT=out
-TARGET=vasishtha
+TARGET=vath
 
 SOURCES = $(wildcard $(SRC)/*.s)
 OBJECTS = $(patsubst $(SRC)/%.s, $(OUT)/%.o, $(SOURCES))
@@ -23,6 +23,8 @@ $(OUT)/main.o: $(SRC)/main.s | $(OUT)
 $(OUT)/%.o: $(SRC)/%.s
 	$(AS) $(ASFLAGS) $^ -o $@
 
+install:
+	sudo install -m 755 $(TARGET) /usr/bin/
 
 clean:
 	rm -rf $(TARGET) $(OUT)/*.o
