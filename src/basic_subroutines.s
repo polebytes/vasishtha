@@ -14,3 +14,25 @@ _start:
 	call	main
 	mov	%rax, %rdi
 	call	_sys_exit
+
+
+/*
+	strlen -> gives the length of the string
+	@rdi: char* string
+	@returns: length
+*/
+.global strlen
+strlen:
+	mov	%rdi, %rbx
+
+.strlen_loop:
+	inc	%rdi
+	
+.strlen_loop_cmp:
+	movb	(%rdi), %al
+	cmp	$0, %al
+	jnz	.strlen_loop
+	sub	%rbx, %rdi
+	mov	%rdi, %rax
+
+
