@@ -23,6 +23,7 @@ _start:
 */
 .global strlen
 strlen:
+	mov	%rdi, %r8
 	mov	%rdi, %rbx
 
 .strlen_loop:
@@ -34,6 +35,8 @@ strlen:
 	jnz	.strlen_loop
 	sub	%rbx, %rdi
 	mov	%rdi, %rax
+	mov	%r8, %rdi
+	ret
 
 /*
 	string_cmp -> compares the the both string
@@ -78,10 +81,19 @@ is_string_same:
 	mov	$1, %rax
 	ret
 
-
-
-
-	
+/*
+	print -> display char
+	@rdi: char* string
+*/
+.global print
+print:
+	call	strlen
+	mov	%rax, %rdx	#length of the string
+	mov	%rdi, %rsi	#address of the string
+	mov	$1, %rdi	#fd
+	mov	$1, %rax	#write_syscall
+	syscall
+	ret
 
 
 
