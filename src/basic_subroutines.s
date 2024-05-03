@@ -35,4 +35,55 @@ strlen:
 	sub	%rbx, %rdi
 	mov	%rdi, %rax
 
+/*
+	string_cmp -> compares the the both string
+	@rdi: char* first_string
+	@rsi: char* second_string
+	@returns: 1 if they are not some, 0 when both the strings are same
+*/
+.global is_string_same
+is_string_same:
+	jmp	._string_cmp
+
+.string_cmp_loop:
+	inc	%rdi
+	inc	%rsi
+
+._string_cmp:
+	movb	(%rdi), %al
+	movb	(%rsi), %bl
+	cmp	$0, %al
+	je	.string_cmp_checkpoint_b
+	cmp	$0, %bl
+	je	.string_cmp_checkpoint_a
+	cmp	%al, %bl
+	je	.string_cmp_loop
+	jmp	.strlen_return_failure
+
+.string_cmp_checkpoint_a:
+	cmp	$0, %al
+	jne	.strlen_return_failure
+	jmp	.string_cmp_done
+
+.string_cmp_checkpoint_b:
+	cmp	$0, %bl
+	jne	.strlen_return_failure
+	jmp	.string_cmp_done
+
+.string_cmp_done:
+	xor	%rax, %rax
+	ret
+
+.strlen_return_failure:
+	mov	$1, %rax
+	ret
+
+
+
+
+	
+
+
+
+
 
