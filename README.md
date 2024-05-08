@@ -1,6 +1,5 @@
 # vasishtha
-a minimal package manager writeen in x86_64 assembly however I will make a portable version of it in **c**
-
+a minimal package manager
 ## Installation
 ```
 make
